@@ -35,7 +35,7 @@ async function check(): Promise<undefined> {
 async function main() {
     while (true) {
         await check();
-        await sleep(180);
+        await sleep(180000);
     }
 };
 
