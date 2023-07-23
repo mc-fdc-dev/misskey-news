@@ -14,7 +14,7 @@ async function check(): Promise<undefined> {
     feed.items.forEach(async (item: Item) => {
         if (!await keyv.get(item.link as string)) {
             // console.log(item)
-            await keyv.set(item.link as string, item.title);
+            await keyv.set(item.link as string, item.title, 1000 * 60 * 60 * 24 * 7);
             await fetch(
                 `https://${process.env.MISSKEY}/api/notes/create`,
                 {
