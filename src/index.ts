@@ -13,10 +13,10 @@ async function check(): Promise<undefined> {
     let feed = await parser.parseURL('https://news.yahoo.co.jp/rss/topics/top-picks.xml');
     feed.items.forEach(async (item: Item) => {
         if (!await keyv.get(item.link as string)) {
-            console.log(item)
+            // console.log(item)
             await keyv.set(item.link as string, item.title);
             await fetch(
-                "https://social.tuna2134.dev/api/notes/create",
+                `https://${process.env.MISSKEY}/api/notes/create`,
                 {
                     method: "POST",
                     headers: {
